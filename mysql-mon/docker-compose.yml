@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+services:
+  mysqld-exporter:
+    image: quay.io/prometheus/mysqld-exporter
+    command:
+     - '--collect.info_schema.tablestats'
+    container_name: mysqld-exporter
+    environment:
+      - DATA_SOURCE_NAME=root:spithumasP0lr1dbP@ssw0rd@(10.200.237.103:31337)/
+    ports:
+      - 9104:9104
+networks:
+  default:
+    driver: bridge
